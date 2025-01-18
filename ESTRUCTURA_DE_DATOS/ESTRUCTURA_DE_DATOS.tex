@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-%\usepackage[utf8]{inputenc} % Codificación
+\usepackage[utf8]{inputenc} % Codificación
 \usepackage[spanish]{babel} % Lenguaje
 \usepackage[T1]{fontenc}
 \usepackage{mathpazo} % tipo de letra
@@ -12,6 +12,9 @@
 \usepackage{fancyhdr}
 \usepackage{parskip}
 
+%CODIGO
+\usepackage{listings} % Para código fuente
+\usepackage{listingsutf8}
 
 \usepackage{ latexsym }
 \usepackage{graphicx}
@@ -25,6 +28,7 @@
 
 \usepackage[dvipsnames]{xcolor} %resaltar con color, utilizar \colorbox{BurntOrange}{texto texto texto} link:https://es.overleaf.com/learn/latex/Using_colours_in_LaTeX (colores)
 \pagestyle{fancy}
+
 \lhead[]{\textbf{Escuela Politécnica Nacional}}
 \chead[]{Calculo Diferencial}
 \rhead[]{\textbf{Nombre:} Jesus Yanchaliquin}
@@ -33,6 +37,39 @@
 \cfoot[]{\rightmark}
 \rfoot[]{\textbf{Pagina: }\thepage}
 \renewcommand{\footrulewidth}{0.09pt}
+
+%FORMATO DEL CODIGO
+
+% Definir estilo personalizado para C++
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+
+
 \begin{document}
 %-----------------------------------------------------------
 \begin{titlepage}
@@ -46,8 +83,8 @@
 {\itshape\Large Apuntes de la materia de \textbf{ESTRUCTURAS DE DATOS}, con los problemas resueltos \par}
 \vfill
 {\Large Autor: \par}
-{\Large Jesus Pad \par}
-{\Large Alejo \par}
+{\Large Jesus Padilla \par}
+{\Large Alejandro Calderon \par}
 \vfill
 {\Large Septiembre 2023 \par}
 
@@ -59,961 +96,265 @@
 
 \section{Algoritmos y complejidad computacional}
 {
-    \subsection{Conceptos Básicos}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
 
-    \subsection{Ejercicios}
-    {
+    \begin{enumerate}
+        \item[$\bullet$]\textbf{\textcolor{blue}{(Ejercicio 1.1): } Dado un conjunto $X = \{x_1, \dots, x_n\}$ de variables booleanas y $T = \{x_i, \neg x_i : x_i \in X\}$ el conjunto de literales.  
+        El problema SAT consiste en una familia de $m$ cláusulas $C = \{C_1, C_2, \dots, C_m\}$, donde cada cláusula $i$ contiene $m_i$ literales.  
+        La familia $C$ de cláusulas sobre $X$ tiene una respuesta de verdadero si y solo si en todas las cláusulas al menos uno de sus miembros es verdadero.}
+        
+        \textbf{Por ejemplo: }
 
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{(Ejercicio 1.1): } Dado un conjunto $X = \{x_1, \dots, x_n\}$ de variables booleanas y $T = \{x_i, \neg x_i : x_i \in X\}$ el conjunto de literales.  
-            El problema SAT consiste en una familia de $m$ cláusulas $C = \{C_1, C_2, \dots, C_m\}$, donde cada cláusula $i$ contiene $m_i$ literales.  
-            La familia $C$ de cláusulas sobre $X$ tiene una respuesta de verdadero si y solo si en todas las cláusulas al menos uno de sus miembros es verdadero.}
+            \[
+                C = (C_1, C_2, C_3) = ((x_1 \lor x_3 \lor \neg x_4 \lor x_5), (x_2 \lor \neg x_3 \lor x_4), (x_1 \lor x_2 \lor x_3))
+            \]
+
+        \textbf{Claramente, una solución es: $(x_1, x_2, x_3, x_4) = (V, V, F, F, V)$ Determine la longitud de codificación de una instancia del problema anterior.}
+
+        \textbf{Solución:}
+
+        {
+            Para determinar la \textbf{longitud de codificación} de una instancia del problema SAT, seguimos el modelo teórico:
+
+            \begin{enumerate}
+                \item \textbf{Número de variables:} n = 5 ($x_1, x_2, x_3, x_4, x_5$).
+                \item \textbf{Número de cláusulas:} $m = 3$.
+                \item \textbf{Número total de literales en las cláusulas:}
+                \begin{itemize}
+                    \item $C_1$ tiene 4 literales.
+                    \item $C_2$ tiene 3 literales.
+                    \item $C_3$ tiene 3 literales.
+                    \item \textbf{Total:} $4 + 3 + 3 = 10$.
+                \end{itemize}
+            \end{enumerate}
             
-            \textbf{Por ejemplo: }
-
+            Dado que cada variable puede tomar \textbf{2 valores} (Verdadero $V$ o Falso $F$), lo que equivale a \textbf{1 bit por variable}, y para almacenar cada literal debemos indicar si está negado ($\neg x_i$), usamos \textbf{1 bit adicional por literal}.
+            
+            La longitud de codificación se calcula como:
+            
                 \[
-                    C = (C_1, C_2, C_3) = ((x_1 \lor x_3 \lor \neg x_4 \lor x_5), (x_2 \lor \neg x_3 \lor x_4), (x_1 \lor x_2 \lor x_3))
+                    L = n + \sum_{i=1}^{m} m_i
                 \]
+            
+            Sustituyendo los valores:
+            
+                \[
+                    L = 5 + 10 = 15 \text{ bits}
+                \]
+            
+            \textbf{Por lo tanto, la longitud de codificación de esta instancia del problema SAT es 15 bits.}
+        }
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{(Ejercicio 1.2): } Un palíndromo es una palabra o frase que se lee igual de adelante hacia atrás que de atrás hacia adelante.  
+        Por ejemplo: \textit{reconocer}, \textit{anilina}, \textit{radar}.}
+        
+        \textbf{Si una frase puede ser considerada como un vector de caracteres:}  
+        
+            \[
+                x = (a, n, i, l, i, n, a)
+            \]
+        
+        \textbf{Escribir e implementar un \textbf{algoritmo en C++} que permita determinar si un vector almacena o no un palíndromo.  
+        Determinar el orden del algoritmo construido. ¿El algoritmo es polinomial?}
+        
+        \textbf{Solución: }
+        
+        {
+            Para determinar si un vector es un palíndromo, comparamos los caracteres desde ambos extremos hacia el centro.
 
-            \textbf{Claramente, una solución es: $(x_1, x_2, x_3, x_4) = (V, V, F, F, V)$ Determine la longitud de codificación de una instancia del problema anterior.}
+            \begin{lstlisting}[language=C++]
+#include <iostream>
+#include <vector>
 
-            \textbf{Solución: }
-            {
+using namespace std;
 
-                Para determinar la \textbf{longitud de codificación} de una instancia del problema SAT, seguimos el modelo teórico:
-
-                \begin{enumerate}
-                    \item \textbf{Número de variables:} n = 5 ($x_1, x_2, x_3, x_4, x_5$).
-                    \item \textbf{Número de cláusulas:} $m = 3$.
-                    \item \textbf{Número total de literales en las cláusulas:}
-                    \begin{itemize}
-                        \item $C_1$ tiene 4 literales.
-                        \item $C_2$ tiene 3 literales.
-                        \item $C_3$ tiene 3 literales.
-                        \item \textbf{Total:} $4 + 3 + 3 = 10$.
-                    \end{itemize}
-                \end{enumerate}
-                
-                Dado que cada variable puede tomar \textbf{2 valores} (Verdadero $V$ o Falso $F$), lo que equivale a \textbf{1 bit por variable}, y para almacenar cada literal debemos indicar si está negado ($\neg x_i$), usamos \textbf{1 bit adicional por literal}.
-                
-                La longitud de codificación se calcula como:
-                
-                    \[
-                        L = n + \sum_{i=1}^{m} m_i
-                    \]
-                
-                Sustituyendo los valores:
-                
-                    \[
-                        L = 5 + 10 = 15 \text{ bits}
-                    \]
-                
-                \textbf{Por lo tanto, la longitud de codificación de esta instancia del problema SAT es 15 bits.}
-
-            }
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
+// Funciin para verificar si un vector de caracteres es palindromo
+bool esPalindromo(const vector<char>& palabra) {
+    int n = palabra.size();
+    for (int i = 0; i < n / 2; i++) {
+        if (palabra[i] != palabra[n - 1 - i]) {
+            return false; // No es palindromo
+        }
     }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+    return true; // Es palindromo
 }
 
-\section{}
-{
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
+int main() {
+    vector<char> palabra = {'a', 'n', 'i', 'l', 'i', 'n', 'a'}; // Caso de prueba
+
+    if (esPalindromo(palabra)) {
+        cout << "El vector almacena un palindromo." << endl;
+    } else {
+        cout << "El vector NO almacena un palindromo." << endl;
     }
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+    return 0;
+}      
+            \end{lstlisting}
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+            El algoritmo compara los elementos extremos hasta la mitad del vector.
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+            \begin{itemize}
+                \item \textbf{Tiempo de ejecución:} \( O(n) \) (recorre la mitad del vector).
+                \item \textbf{Espacio adicional usado:} \( O(1) \) (solo variables auxiliares).
+            \end{itemize}
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+            \textbf{Conclusión:}  
+            El algoritmo es \textbf{polinomial}, ya que su tiempo de ejecución es \( O(n) \), lo cual es eficiente.
+        }
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+    \end{enumerate}
+    
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+    
 }
 
-\section{}
+\section{Algoritmos de Ordenamiento}
 {
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+    
+    \begin{enumerate}
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+    \end{enumerate}
+    
 }
 
-\section{}
+\section{Conceptos Básicos de C++}
 {
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+    
+    \begin{enumerate}
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+    \end{enumerate}
+    
 }
 
-\section{}
+\section{Estructura de Datos Básicas}
 {
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+    
+    \begin{enumerate}
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+    \end{enumerate}
+    
+}
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+\section{Arboles Binarios de Búsqueda}
+{
+    
+    \begin{enumerate}
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+    \end{enumerate}
+    
+}
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+\section{Grafos y su Implementación computacional}
+{
+    
+    \begin{enumerate}
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+        
+        \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+    \end{enumerate}
 
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
-
-    \subsection{}
-    {
-        \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-            
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
-        \end{enumerate}
-    }
+% \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}    
 }
 
 \end{document}
