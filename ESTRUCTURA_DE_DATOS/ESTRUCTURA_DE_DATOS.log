@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.28)  17 JAN 2025 21:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.28)  17 JAN 2025 21:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -711,8 +711,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 196.
-LaTeX Info: Redefining \% on input line 196.
+LaTeX Info: Redefining \. on input line 194.
+LaTeX Info: Redefining \% on input line 194.
 [3]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -721,8 +721,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 262.
-LaTeX Info: Redefining \% on input line 262.
+LaTeX Info: Redefining \. on input line 260.
+LaTeX Info: Redefining \% on input line 260.
 [4]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -731,8 +731,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 332.
-LaTeX Info: Redefining \% on input line 332.
+LaTeX Info: Redefining \. on input line 330.
+LaTeX Info: Redefining \% on input line 330.
 [5]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -741,8 +741,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 403.
-LaTeX Info: Redefining \% on input line 403.
+LaTeX Info: Redefining \. on input line 401.
+LaTeX Info: Redefining \% on input line 401.
 [6]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -751,8 +751,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 465.
-LaTeX Info: Redefining \% on input line 465.
+LaTeX Info: Redefining \. on input line 463.
+LaTeX Info: Redefining \% on input line 463.
 [7]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -769,8 +769,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 606.
-LaTeX Info: Redefining \% on input line 606.
+LaTeX Info: Redefining \. on input line 604.
+LaTeX Info: Redefining \% on input line 604.
 [9]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -779,8 +779,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 669.
-LaTeX Info: Redefining \% on input line 669.
+LaTeX Info: Redefining \. on input line 667.
+LaTeX Info: Redefining \% on input line 667.
 [10]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -789,8 +789,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 738.
-LaTeX Info: Redefining \% on input line 738.
+LaTeX Info: Redefining \. on input line 736.
+LaTeX Info: Redefining \% on input line 736.
 [11]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -799,8 +799,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 807.
-LaTeX Info: Redefining \% on input line 807.
+LaTeX Info: Redefining \. on input line 805.
+LaTeX Info: Redefining \% on input line 805.
 [12]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -809,8 +809,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 872.
-LaTeX Info: Redefining \% on input line 872.
+LaTeX Info: Redefining \. on input line 870.
+LaTeX Info: Redefining \% on input line 870.
 [13]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -819,8 +819,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 941.
-LaTeX Info: Redefining \% on input line 941.
+LaTeX Info: Redefining \. on input line 939.
+LaTeX Info: Redefining \% on input line 939.
 [14]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -829,8 +829,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-LaTeX Info: Redefining \. on input line 1004.
-LaTeX Info: Redefining \% on input line 1004.
+LaTeX Info: Redefining \. on input line 1002.
+LaTeX Info: Redefining \% on input line 1002.
 [15] (ESTRUCTURA_DE_DATOS.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
@@ -849,7 +849,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  103i,11n,107p,801b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplbi8a.pfb><C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/JESUS PAD/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ESTRUCTURA_DE_DATOS.pdf (16 pages, 102972 bytes).
+Output written on ESTRUCTURA_DE_DATOS.pdf (16 pages, 103839 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

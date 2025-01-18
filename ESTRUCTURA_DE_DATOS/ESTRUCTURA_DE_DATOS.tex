@@ -64,61 +64,59 @@
     \subsection{}
     {
 
-    \textbf{Ejercicio 1.1}
-
-Dado un conjunto $X = \{x_1, \dots, x_n\}$ de variables booleanas y $T = \{x_i, \neg x_i : x_i \in X\}$ el conjunto de literales.  
-El problema SAT consiste en una familia de $m$ cláusulas $C = \{C_1, C_2, \dots, C_m\}$, donde cada cláusula $i$ contiene $m_i$ literales.  
-La familia $C$ de cláusulas sobre $X$ tiene una respuesta de verdadero si y solo si en todas las cláusulas al menos uno de sus miembros es verdadero.  
-
-Por ejemplo:
-
-\[
-C = (C_1, C_2, C_3) = ((x_1 \lor x_3 \lor \neg x_4 \lor x_5), (x_2 \lor \neg x_3 \lor x_4), (x_1 \lor x_2 \lor x_3))
-\]
-
-Claramente, una solución es:
-
-\[
-(x_1, x_2, x_3, x_4) = (V, V, F, F, V)
-\]
-
-Determine la longitud de codificación de una instancia del problema anterior.
-
-\textbf{Solución}
-
-Para determinar la \textbf{longitud de codificación} de una instancia del problema SAT, seguimos el modelo teórico:
-
-\begin{enumerate}
-    \item \textbf{Número de variables:} n = 5 ($x_1, x_2, x_3, x_4, x_5$).
-    \item \textbf{Número de cláusulas:} $m = 3$.
-    \item \textbf{Número total de literales en las cláusulas:}
-    \begin{itemize}
-        \item $C_1$ tiene 4 literales.
-        \item $C_2$ tiene 3 literales.
-        \item $C_3$ tiene 3 literales.
-        \item \textbf{Total:} $4 + 3 + 3 = 10$.
-    \end{itemize}
-\end{enumerate}
-
-Dado que cada variable puede tomar \textbf{2 valores} (Verdadero $V$ o Falso $F$), lo que equivale a \textbf{1 bit por variable}, y para almacenar cada literal debemos indicar si está negado ($\neg x_i$), usamos \textbf{1 bit adicional por literal}.
-
-La longitud de codificación se calcula como:
-
-\[
-L = n + \sum_{i=1}^{m} m_i
-\]
-
-Sustituyendo los valores:
-
-\[
-L = 5 + 10 = 15 \text{ bits}
-\]
-
-\textbf{Por lo tanto, la longitud de codificación de esta instancia del problema SAT es 15 bits.}
-
-
         \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
+            \item[$\bullet$]\textbf{\textcolor{blue}{(Ejercicio 1.1)} Dado un conjunto $X = \{x_1, \dots, x_n\}$ de variables booleanas y $T = \{x_i, \neg x_i : x_i \in X\}$ el conjunto de literales.  
+            El problema SAT consiste en una familia de $m$ cláusulas $C = \{C_1, C_2, \dots, C_m\}$, donde cada cláusula $i$ contiene $m_i$ literales.  
+            La familia $C$ de cláusulas sobre $X$ tiene una respuesta de verdadero si y solo si en todas las cláusulas al menos uno de sus miembros es verdadero.}
+            
+            \textbf{Por ejemplo: }
+
+                \[
+                    C = (C_1, C_2, C_3) = ((x_1 \lor x_3 \lor \neg x_4 \lor x_5), (x_2 \lor \neg x_3 \lor x_4), (x_1 \lor x_2 \lor x_3))
+                \]
+
+            \textbf{Claramente, una solución es:}
+                
+                \[
+                (x_1, x_2, x_3, x_4) = (V, V, F, F, V)
+                \]
+                
+            \textbf{Determine la longitud de codificación de una instancia del problema anterior.}
+
+            \textbf{Solución: }
+            {
+
+                Para determinar la \textbf{longitud de codificación} de una instancia del problema SAT, seguimos el modelo teórico:
+
+                \begin{enumerate}
+                    \item \textbf{Número de variables:} n = 5 ($x_1, x_2, x_3, x_4, x_5$).
+                    \item \textbf{Número de cláusulas:} $m = 3$.
+                    \item \textbf{Número total de literales en las cláusulas:}
+                    \begin{itemize}
+                        \item $C_1$ tiene 4 literales.
+                        \item $C_2$ tiene 3 literales.
+                        \item $C_3$ tiene 3 literales.
+                        \item \textbf{Total:} $4 + 3 + 3 = 10$.
+                    \end{itemize}
+                \end{enumerate}
+                
+                Dado que cada variable puede tomar \textbf{2 valores} (Verdadero $V$ o Falso $F$), lo que equivale a \textbf{1 bit por variable}, y para almacenar cada literal debemos indicar si está negado ($\neg x_i$), usamos \textbf{1 bit adicional por literal}.
+                
+                La longitud de codificación se calcula como:
+                
+                \[
+                L = n + \sum_{i=1}^{m} m_i
+                \]
+                
+                Sustituyendo los valores:
+                
+                \[
+                L = 5 + 10 = 15 \text{ bits}
+                \]
+                
+                \textbf{Por lo tanto, la longitud de codificación de esta instancia del problema SAT es 15 bits.}
+
+            }
             
             \item[$\bullet$]\textbf{\textcolor{blue}{()}  }{}
             
