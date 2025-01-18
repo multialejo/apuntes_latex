@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[utf8]{inputenc} % Codificación
+%\usepackage[utf8]{inputenc} % Codificación
 \usepackage[spanish]{babel} % Lenguaje
 \usepackage[T1]{fontenc}
 \usepackage{mathpazo} % tipo de letra
@@ -24,8 +24,6 @@
 \usepackage{pgfplotstable}
 
 \usepackage[dvipsnames]{xcolor} %resaltar con color, utilizar \colorbox{BurntOrange}{texto texto texto} link:https://es.overleaf.com/learn/latex/Using_colours_in_LaTeX (colores)
-\usepackage{graphicx}
-\usepackage{fancyhdr}
 \pagestyle{fancy}
 \lhead[]{\textbf{Escuela Politécnica Nacional}}
 \chead[]{Calculo Diferencial}
@@ -59,13 +57,13 @@
 \newpage
 \vspace{\baselineskip} % No se para que sirve pero dejale ahi jajajajaja
 
-\section{}
+\section{Algoritmos y complejidad computacional}
 {
-    \subsection{}
+    \subsection{Ejecicios}
     {
 
         \begin{enumerate}
-            \item[$\bullet$]\textbf{\textcolor{blue}{(Ejercicio 1.1)} Dado un conjunto $X = \{x_1, \dots, x_n\}$ de variables booleanas y $T = \{x_i, \neg x_i : x_i \in X\}$ el conjunto de literales.  
+            \item[$\bullet$]\textbf{\textcolor{blue}{(Ejercicio 1.1): } Dado un conjunto $X = \{x_1, \dots, x_n\}$ de variables booleanas y $T = \{x_i, \neg x_i : x_i \in X\}$ el conjunto de literales.  
             El problema SAT consiste en una familia de $m$ cláusulas $C = \{C_1, C_2, \dots, C_m\}$, donde cada cláusula $i$ contiene $m_i$ literales.  
             La familia $C$ de cláusulas sobre $X$ tiene una respuesta de verdadero si y solo si en todas las cláusulas al menos uno de sus miembros es verdadero.}
             
@@ -75,13 +73,7 @@
                     C = (C_1, C_2, C_3) = ((x_1 \lor x_3 \lor \neg x_4 \lor x_5), (x_2 \lor \neg x_3 \lor x_4), (x_1 \lor x_2 \lor x_3))
                 \]
 
-            \textbf{Claramente, una solución es:}
-                
-                \[
-                (x_1, x_2, x_3, x_4) = (V, V, F, F, V)
-                \]
-                
-            \textbf{Determine la longitud de codificación de una instancia del problema anterior.}
+            \textbf{Claramente, una solución es: $(x_1, x_2, x_3, x_4) = (V, V, F, F, V)$ Determine la longitud de codificación de una instancia del problema anterior.}
 
             \textbf{Solución: }
             {
